@@ -1,19 +1,19 @@
-import { FC, useEffect } from 'react';
-import axios from 'axios';
-import { getRovers } from './resources'; 
+import { FC } from 'react';
+import { Landing, Selector, ListRovers } from '../../components';
+import styled from '@emotion/styled';
 
 export const Home: FC = () => {
-  useEffect(() => {
-    axios(getRovers())
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error))
-  }, [])
-
   return (
     <>
-      <>Curiosity</>
-      <>Opportunity</>
-      <>Spirit</>
+      <Landing />
+      <Container>
+        <Selector />
+        <ListRovers />
+      </Container>
     </>
   )
 };
+
+const Container = styled.div`
+  padding: 0 60px;
+`;

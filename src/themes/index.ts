@@ -7,11 +7,11 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#0051FF',
+      main: '#0F110C',
     },
     secondary: {
-      main: '#ff4081',
-    },
+      main: '#FDECEF',
+    }
   },
   spacing: 0,
   breakpoints: {
@@ -24,5 +24,6 @@ const theme = createTheme({
     },
   },
 });
+
 
 export default theme;
