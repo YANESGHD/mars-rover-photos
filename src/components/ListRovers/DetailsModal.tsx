@@ -1,6 +1,8 @@
 import { FC } from 'react';
-import { Typography, Dialog } from '@mui/material';
+import { Typography, Dialog, IconButton } from '@mui/material';
 import { styled } from '@mui/system';
+import { BookmarkBorder, Bookmark } from '@mui/icons-material';
+import { useBookmarkContext } from '../../contexts';
 
 interface DetailsModalProps {
   open: boolean;
@@ -9,6 +11,12 @@ interface DetailsModalProps {
 }
 
 export const DetailsModal: FC<DetailsModalProps> = ({ open, setOpen, details }) => {
+  const { validateBookmark, toggleBookmark } = useBookmarkContext();
+
+  const handleBookmarkedImage = () => {
+    toggleBookmark(details);
+  };
+
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>
       <Container>
@@ -16,6 +24,9 @@ export const DetailsModal: FC<DetailsModalProps> = ({ open, setOpen, details }) 
         <Typography variant="body1">{`Earth Date: ${details.earth_date}`}</Typography>
         <Typography variant="body1">{`Sol Date: ${details.sol}`}</Typography>
         <Typography variant="body1">{`Camera: ${details.camera.full_name}`}</Typography>
+        <BookmarkButton onClick={handleBookmarkedImage}>
+          {validateBookmark(details) ? <Bookmark sx={{ color: '#FFD000', fontSize: 35 }}/> : <BookmarkBorder sx={{ fontSize: 35 }} />}
+        </BookmarkButton>
       </Container>
     </Dialog>
   );
@@ -33,4 +44,11 @@ const Image = styled('img')`
   @media (min-width: 668px) {
     width: 400px;
   }
+`;
+
+const BookmarkButton = styled(IconButton)`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 4px;
 `;

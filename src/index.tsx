@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import { App } from './components';
-import { RoverProvider } from './contexts';
+import { RoverProvider, BookmarkProvider } from './contexts';
 import './index.css';
 import theme from './themes';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -17,7 +17,9 @@ root.render(
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <RoverProvider>
-          <App />
+          <BookmarkProvider>
+            <App />
+          </BookmarkProvider>
         </RoverProvider>
       </QueryClientProvider>
     </ThemeProvider>

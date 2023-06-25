@@ -4,14 +4,11 @@ import styled from '@emotion/styled';
 
 export const Home: FC = () => {
   return (
-    <>
-      <Landing />
-      <Container>
-        <Selector />
-        <ListRovers />
-      </Container>
-    </>
-  )
+    <Container>
+      <Selector />
+      <ListRovers />
+    </Container>
+  );
 };
 
 const Container = styled.div`
