@@ -5,9 +5,6 @@ import { App } from './components';
 import { RoverProvider, BookmarkProvider, FilterProvider } from './contexts';
 import './index.css';
 import theme from './themes';
-import { QueryClient, QueryClientProvider } from 'react-query';
-
-const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,15 +12,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <ThemeProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <FilterProvider>
-          <RoverProvider>
-            <BookmarkProvider>
-              <App />
-            </BookmarkProvider>
-          </RoverProvider>
-        </FilterProvider>
-      </QueryClientProvider>
+      <FilterProvider>
+        <RoverProvider>
+          <BookmarkProvider>
+            <App />
+          </BookmarkProvider>
+        </RoverProvider>
+      </FilterProvider>
     </ThemeProvider>
   </BrowserRouter>
 );
