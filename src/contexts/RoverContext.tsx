@@ -1,8 +1,8 @@
 import React, { FC, createContext, useEffect, useContext, useState, ReactNode } from 'react';
 import { useRoverImages } from '../hooks/useRovers';
-import { useQuery, useQueryClient } from 'react-query';
 import moment from 'moment';
 import axios from 'axios';
+import { useFilterContext } from './FilterContext';
 
 interface RoverProviderProps {
   children: ReactNode;
@@ -12,16 +12,29 @@ interface RoverContextProps {
   roverSelected: string;
   setRoverSelected: (rover: string) => void;
   roverImages: any;
-  isLoading: boolean,
-  isError: any,
-  fetchRoverImages: (payload: any ) => void;
+  isLoading: boolean;
+  isError: any;
+  hasMore: boolean;
+  fetchRoverImages: (payload: any) => void;
 }
 
-const getRoverImagesByFilter = async (rover: string, payload: any = null) => {
+const RoverContext = createContext<RoverContextProps>({
+  roverSelected: 'curiosity',
+  setRoverSelected: () => {},
+  roverImages: [],
+  isLoading: false,
+  isError: '',
+  hasMore: true,
+  fetchRoverImages: () => {}
+});
+
+const getRoverImagesByFilter = async (rover: string, payload: any = null, page: number) => {
   const params: any = {
+    page: page ? page : 1,
     api_key: process.env.REACT_APP_NASA_API_KEY,
     ...payload
   }
+
   if (!params?.earth_date && !params.sol) {
     params.earth_date = moment().format('YYYY-MM-DD');
   }
@@ -35,41 +48,48 @@ const getRoverImagesByFilter = async (rover: string, payload: any = null) => {
   return response.data.photos;
 }
 
-const RoverContext = createContext<RoverContextProps>({
-  roverSelected: 'curiosity',
-  setRoverSelected: () => {},
-  roverImages: [],
-  isLoading: false,
-  isError: '',
-  fetchRoverImages: () => {}
-});
-
 export const RoverProvider: FC<RoverProviderProps> = ({ children }) => {
   const [roverSelected, setRoverSelected] = useState('curiosity');
-  const queryClient = useQueryClient();
+  const [roverImages, setRoverImages] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<any>(null);
+  const [hasMore, setHasMore] = useState(true);
 
-  const { data: roverImages, isLoading, error } = useQuery(
-    ['roverImages', roverSelected],
-    () => getRoverImagesByFilter(roverSelected),
-    {
-      enabled: false,
+  const { filters, setFilters, setPage } = useFilterContext();
+
+  const fetchRoverImages = async (page: any = null) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const images = await getRoverImagesByFilter(roverSelected, filters, page);
+      setRoverImages((prevState: any) => [...prevState, ...images]);
+      setHasMore(images.length === 25);
+    } catch (error) {
+      setError(error);
     }
-  );
 
-  const fetchRoverImages = (payload: any = null) => {
-    queryClient.prefetchQuery(['roverImages', roverSelected], () => getRoverImagesByFilter(roverSelected, payload));
+    setIsLoading(false);
+  };
+
+  const handleRoverChange = (rover: any) => {
+    setRoverSelected(rover);
+    setFilters({});
+    setPage(1);
   }
 
   useEffect(() => {
+    setRoverImages([]);
     fetchRoverImages();
-  }, [roverSelected]);
+  }, [roverSelected, filters]);
 
-  const contextValue = {
+  const contextValue: RoverContextProps = {
     roverSelected,
-    setRoverSelected,
+    setRoverSelected: handleRoverChange,
     roverImages,
     isLoading,
     isError: error,
+    hasMore,
     fetchRoverImages
   };
 

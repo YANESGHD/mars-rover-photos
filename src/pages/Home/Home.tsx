@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Landing, Selector, ListRovers } from '../../components';
+import { Selector, ListRovers } from '../../components';
 import styled from '@emotion/styled';
 
 export const Home: FC = () => {

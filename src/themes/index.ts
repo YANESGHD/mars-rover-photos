@@ -3,14 +3,14 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   typography: {
     fontFamily: 'Roboto',
-    fontWeightBold: 700,
+    fontWeightBold: 700
   },
   palette: {
     primary: {
-      main: '#0F110C',
+      main: '#0F110C'
     },
     secondary: {
-      main: '#FDECEF',
+      main: '#FDECEF'
     }
   },
   spacing: 0,
@@ -20,10 +20,9 @@ const theme = createTheme({
       sm: 600,
       md: 960,
       lg: 1280,
-      xl: 1920,
-    },
-  },
+      xl: 1920
+    }
+  }
 });
-
 
 export default theme;

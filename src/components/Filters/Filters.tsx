@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { ButtonGroup, Dialog, DialogContent, DialogActions, Grid, InputLabel, Checkbox, FormControlLabel, Radio, RadioGroup } from '@mui/material';
@@ -6,7 +6,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { dateTypes, cameras } from '../../constants';
 import styled from '@emotion/styled';
 import { StyledDateField } from './DateField';
-import { useRoverContext } from '../../contexts';
+import { useFilterContext, useRoverContext } from '../../contexts';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateField } from '@mui/x-date-pickers/DateField';
@@ -19,15 +19,13 @@ interface FiltersProps {
 
 export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
   const [dateTypeSelected, setDateTypeSelected] = useState('Earth Date');
-  const [earthValueEntered, setEarthValueEntered] = useState<any>('');
+  const [earthValueEntered, setEarthValueEntered] = useState<any>();
   const [solValueEntered, setSolValueEntered] = useState<any>('');
   const [cameraSelected, setCameraSelected] = useState('');
-  const { fetchRoverImages, roverSelected } = useRoverContext();
+  const { roverSelected } = useRoverContext();
+  const { setFilters } = useFilterContext(); 
 
   const handleClose = () => {
-    setEarthValueEntered('');
-    setSolValueEntered('');
-    setCameraSelected('');
     setOpen(false);
   }
 
@@ -48,11 +46,15 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
       payload.sol = solValueEntered;
     }
 
-    fetchRoverImages(payload);
-
+    setFilters(payload);
     handleClose();
-    console.log(payload)
   };
+
+  useEffect(() => {
+    setEarthValueEntered('');
+    setSolValueEntered('');
+    setCameraSelected('');
+  }, [roverSelected]);
 
   return (
     <>
@@ -77,7 +79,7 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
                   Earth Date
                 </InputLabel>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateField name='earth-date' size="small" onChange={(value) => setEarthValueEntered(value)} />
+                  <DateField name='earth-date' size="small" value={earthValueEntered} onChange={(value) => setEarthValueEntered(value)} />
                 </LocalizationProvider>
               </>
             ) : (
@@ -87,13 +89,13 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
                 </InputLabel>
                 <TextField
                   name='sol-date'
-                  autoFocus
                   margin="dense"
                   placeholder='e.g. 1000'
                   id="name"
                   type="number"
                   variant="outlined"
                   size="small"
+                  value={solValueEntered}
                   onChange={(event) => setSolValueEntered(event.target.value)}
                 />
               </>
