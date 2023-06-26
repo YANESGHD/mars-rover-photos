@@ -40,7 +40,7 @@ const getRoverImagesByFilter = async (rover: string, payload: any = null, page: 
 
   const response = await axios({
     method: 'get',
-    url: `${process.env.REACT_APP_NASA_API_URL}api/v1/trovers/${rover}/photos`,
+    url: `${process.env.REACT_APP_NASA_API_URL}api/v1/rovers/${rover}/photos`,
     params
   });
 

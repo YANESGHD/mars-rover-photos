@@ -12,7 +12,7 @@ export const ListBookmarks: FC<ListBookmarksProps> = ({ roverImages }) => {
     <Container>
       <Grid container xs={12}>
         {roverImages?.map((rover: any) => (
-          <Grid item xs={12} sm={6} md={4} key={rover.id}>
+          <Grid item xs={12} sm={6} md={3} key={rover.id}>
             <PhotoCard photo={rover} />
           </Grid>
         ))}

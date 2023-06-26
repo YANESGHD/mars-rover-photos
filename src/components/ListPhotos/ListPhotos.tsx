@@ -37,7 +37,7 @@ export const ListPhotos: FC = () => {
       <Container>
         <Grid container xs={12} justifyContent="space-between">
           {roverImages?.map((rover: any) => (
-            <Grid item xs={12} sm={6} md={4} key={rover.id}>
+            <Grid item xs={12} sm={6} md={3} key={rover.id}>
               <PhotoCard photo={rover} />
             </Grid>
           ))}

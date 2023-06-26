@@ -29,13 +29,13 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   transition: box-shadow 0.3s ease-in-out;
 `;
 
 const Image = styled.img`
-  width: 250px;
-  height: 250px;
+  width: 90%;
+  height: 240px;
   border-radius: 14px;
 
   @media (min-width: 1090) {
