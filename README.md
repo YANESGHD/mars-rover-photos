@@ -4,8 +4,10 @@
 
 Copy .env.template content to a new .env file 
 
-`npm install`
+`yarn install`
 
-`npm start`
+`yarn start`
 
-`npm test`
+`yarn test`
+
+Production link: https://mars-rover-photos-eta.vercel.app/

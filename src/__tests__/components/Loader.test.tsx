@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Loader } from '../../components';
 
 describe('Loader component', () => {
-  test('renders the loader', () => {
+  it('renders the loader', () => {
     render(<Loader />);
     const loaderElement = screen.getByRole('progressbar');
     expect(loaderElement).toBeInTheDocument();
