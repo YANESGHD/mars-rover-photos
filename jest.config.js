@@ -3,11 +3,11 @@ module.exports = {
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
-    '^.+\\.svg$': 'jest-transformer-svg',
+    '^.+\\.svg$': 'jest-transformer-svg'
   },
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|webp)$': '<rootDir>/src/__mocks__/fileMock.js',
+    '\\.(jpg|jpeg|png|gif|webp)$': '<rootDir>/src/__mocks__/fileMock.js'
   },
-  setupFilesAfterEnv: ['./src/setupTests.ts'],
+  setupFilesAfterEnv: ['./src/setupTests.ts']
 };

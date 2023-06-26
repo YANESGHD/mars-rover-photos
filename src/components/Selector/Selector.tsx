@@ -4,7 +4,7 @@ import { ButtonGroup, Button, IconButton } from '@mui/material';
 import { Tune } from '@mui/icons-material';
 import { rovers } from '../../constants';
 import { useRoverContext } from '../../contexts';
-import { Filters } from '../';
+import { FiltersModal } from '../';
 
 export const Selector: FC = () => {
   const { roverSelected, setRoverSelected } = useRoverContext();
@@ -13,7 +13,7 @@ export const Selector: FC = () => {
   return (
     <>
       <Container>
-        <ButtonGroup color="secondary">
+        <ButtonGroup color='secondary'>
           {rovers.map((rover) => (
             <StyledButton
               key={rover}
@@ -28,7 +28,7 @@ export const Selector: FC = () => {
         </IconButton>
       </Container>
 
-      <Filters open={openModal} setOpen={setOpenModal} />
+      <FiltersModal open={openModal} setOpen={setOpenModal} />
     </>
   );
 };

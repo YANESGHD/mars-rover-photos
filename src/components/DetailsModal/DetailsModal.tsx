@@ -25,7 +25,7 @@ export const DetailsModal: FC<DetailsModalProps> = ({ open, setOpen, details }) 
         <Typography variant="body1">{`Sol Date: ${details.sol}`}</Typography>
         <Typography variant="body1">{`Camera: ${details.camera.full_name}`}</Typography>
         <BookmarkButton onClick={handleBookmarkedImage}>
-          {validateBookmark(details) ? <Bookmark sx={{ color: '#FFD000', fontSize: 35 }}/> : <BookmarkBorder sx={{ fontSize: 35 }} />}
+          {validateBookmark(details) ? <Bookmark sx={{ color: '#FFD000', fontSize: 35 }} /> : <BookmarkBorder sx={{ fontSize: 35 }} />}
         </BookmarkButton>
       </Container>
     </Dialog>
@@ -34,7 +34,7 @@ export const DetailsModal: FC<DetailsModalProps> = ({ open, setOpen, details }) 
 
 const Container = styled.div`
   padding: 10px;
-  background-color: #FDECEF;
+  background-color: #fdecef;
 `;
 
 const Image = styled.img`

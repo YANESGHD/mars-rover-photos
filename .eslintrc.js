@@ -28,6 +28,11 @@ module.exports = {
   plugins: [
     'react'
   ],
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   rules: {
     '@typescript-eslint/member-delimiter-style': ['error', {
       multiline: {

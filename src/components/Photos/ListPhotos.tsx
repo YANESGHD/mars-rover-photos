@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from '@emotion/styled';
 import { Grid } from '@mui/material';
-import { PhotoCard } from './PhotoCard';
+import { PhotoCard } from './';
 
 interface ListPhotosProps {
   photos: any[]

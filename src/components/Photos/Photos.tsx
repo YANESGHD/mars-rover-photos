@@ -1,13 +1,11 @@
 import { FC } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useFilterContext, useRoverContext } from '../../contexts';
-import { NotFoundMessage, ErrorMessage } from '../';
-import { Loader } from '../Loader';
-import { ListPhotos } from './ListPhotos';
+import { NotFoundMessage, ErrorMessage, Loader } from '../';
+import { ListPhotos } from './';
 
 export const Photos: FC = () => {
-  const { fetchRoverImages, roverImages, isLoading, isError, hasMore } =
-    useRoverContext();
+  const { fetchRoverImages, roverImages, isLoading, isError, hasMore } = useRoverContext();
   const { page, setPage } = useFilterContext();
 
   const handleScroll = () => {
