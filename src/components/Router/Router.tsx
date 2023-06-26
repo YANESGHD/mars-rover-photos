@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { Home, Bookmarks } from '../../pages';
-import { Layout } from '../Layout';
+import { Home, Bookmarks } from '../../containers';
+import { Layout } from '../';
 
 export const Router: FC = () => {
   return (

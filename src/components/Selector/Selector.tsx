@@ -13,7 +13,7 @@ export const Selector: FC = () => {
   return (
     <>
       <Container>
-        <ButtonGroup color="secondary" aria-label="medium secondary button group">
+        <ButtonGroup color="secondary">
           {rovers.map((rover) => (
             <StyledButton
               key={rover}

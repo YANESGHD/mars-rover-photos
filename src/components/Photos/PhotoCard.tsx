@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import styled from '@emotion/styled';
-import { DetailsModal } from './DetailsModal';
+import { DetailsModal } from '../';
 
 interface PhotoCardProps {
   photo: any

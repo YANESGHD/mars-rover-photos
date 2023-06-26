@@ -1,13 +1,13 @@
-import { FunctionComponent } from 'react';
+import { FC } from 'react';
 import styled from '@emotion/styled';
-import { HighlightOff } from '@mui/icons-material';
 import { Typography } from '@mui/material';
+import { HighlightOff } from '@mui/icons-material';
 
 interface ErrorMessageProps {
   message: string
 };
 
-export const ErrorMessage: FunctionComponent<ErrorMessageProps> = ({ message }) => (
+export const ErrorMessage: FC<ErrorMessageProps> = ({ message }) => (
   <Container>
     <HighlightOff sx={{ fontSize: { xs: 60, md: 70 }, marginBottom: '30px' }} />
     <Typography

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { NotFoundMessage } from '../../components';
+import { NotFoundMessage } from '../components';
 
 describe('NotFoundMessage', () => {
   it('renders the error message', () => {

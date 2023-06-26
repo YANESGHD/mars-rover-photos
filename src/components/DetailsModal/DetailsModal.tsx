@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Typography, Dialog, IconButton } from '@mui/material';
-import { styled } from '@mui/system';
 import { BookmarkBorder, Bookmark } from '@mui/icons-material';
+import styled from '@emotion/styled';
 import { useBookmarkContext } from '../../contexts';
 
 interface DetailsModalProps {
@@ -32,13 +32,13 @@ export const DetailsModal: FC<DetailsModalProps> = ({ open, setOpen, details }) 
   );
 };
 
-const Container = styled('div')`
+const Container = styled.div`
   padding: 10px;
   background-color: #FDECEF;
 `;
 
-const Image = styled('img')`
-  width: 100%;
+const Image = styled.img`
+  width: 250px;
   height: 250px;
 
   @media (min-width: 668px) {

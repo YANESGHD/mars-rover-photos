@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Landing } from '../../components';
+import { Landing } from '../components';
 
 describe('Landing component', () => {
   it('renders the image with the correct source', () => {

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import styled from '@emotion/styled';
-import { useBookmarkContext } from '../../contexts';
-import { ListBookmarks } from './components/ListBookmarks';
 import { Typography } from '@mui/material';
+import { useBookmarkContext } from '../../contexts';
+import { ListPhotos } from '../../components';
 
 export const Bookmarks: FC = () => {
   const { bookmarks } = useBookmarkContext();
@@ -16,7 +16,7 @@ export const Bookmarks: FC = () => {
       }}>
         Bookmarks
       </Typography>
-      <ListBookmarks roverImages={bookmarks} />
+      <ListPhotos photos={bookmarks} />
     </Container>
   );
 };

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import { AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 import styled from '@emotion/styled';
+import { AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 import favicon from '../../assets/nasa-logo.svg';
 import { HamburguerMenu } from './HamburguerMenu';

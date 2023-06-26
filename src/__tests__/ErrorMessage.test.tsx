@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { ErrorMessage } from '../../components';
+import { ErrorMessage } from '../components';
 
 describe('ErrorMessage component', () => {
   const message = 'Test error message';

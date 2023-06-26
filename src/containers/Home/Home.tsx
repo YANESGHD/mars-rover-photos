@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { Selector, ListPhotos } from '../../components';
 import styled from '@emotion/styled';
+import { Selector, Photos } from '../../components';
 
 export const Home: FC = () => {
   return (
     <Container>
       <Selector />
-      <ListPhotos />
+      <Photos />
     </Container>
   );
 };

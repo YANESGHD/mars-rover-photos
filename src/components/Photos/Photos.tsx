@@ -1,14 +1,11 @@
 import { FC } from 'react';
-import styled from '@emotion/styled';
-import { Grid } from '@mui/material';
-import { PhotoCard } from './PhotoCard';
-import { useFilterContext, useRoverContext } from '../../contexts';
-import { NotFoundMessage } from '../NotFoundMessage';
-import { ErrorMessage } from '../ErrorMessage';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useFilterContext, useRoverContext } from '../../contexts';
+import { NotFoundMessage, ErrorMessage } from '../';
 import { Loader } from '../Loader';
+import { ListPhotos } from './ListPhotos';
 
-export const ListPhotos: FC = () => {
+export const Photos: FC = () => {
   const { fetchRoverImages, roverImages, isLoading, isError, hasMore } =
     useRoverContext();
   const { page, setPage } = useFilterContext();
@@ -34,19 +31,7 @@ export const ListPhotos: FC = () => {
       loader={<Loader />}
       endMessage={<></>}
     >
-      <Container>
-        <Grid container xs={12} justifyContent="space-between">
-          {roverImages?.map((rover: any) => (
-            <Grid item xs={12} sm={6} md={3} key={rover.id}>
-              <PhotoCard photo={rover} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+      <ListPhotos photos={roverImages}/>
     </InfiniteScroll>
   );
 };
-
-const Container = styled.div`
-  padding-top: 5px;
-`;
