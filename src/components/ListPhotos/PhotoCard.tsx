@@ -2,19 +2,23 @@ import { FC, useState } from 'react';
 import styled from '@emotion/styled';
 import { DetailsModal } from './DetailsModal';
 
-interface RoverCardProps {
-  rover: any
+interface PhotoCardProps {
+  photo: any
 }
 
-export const RoverCard: FC<RoverCardProps> = ({ rover }) => {
+export const PhotoCard: FC<PhotoCardProps> = ({ photo }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   return (
     <>
       <Container>
-        <Image src={rover.img_src} onClick={() => setShowDetails(true)}/>
+        <Image src={photo.img_src} onClick={() => setShowDetails(true)} />
       </Container>
-      <DetailsModal open={showDetails} setOpen={setShowDetails} details={rover} />
+      <DetailsModal
+        open={showDetails}
+        setOpen={setShowDetails}
+        details={photo}
+      />
     </>
   );
 };
@@ -30,13 +34,17 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  width: 340px;
+  width: 250px;
   height: 250px;
   border-radius: 14px;
 
+  @media (min-width: 1090) {
+    width: 340px
+  }
+
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 10px #BB3896;
+    box-shadow: 0 0 10px #bb3896;
     transform: scale(1.02);
   }
 `;

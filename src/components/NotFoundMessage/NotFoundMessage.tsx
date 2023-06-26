@@ -13,7 +13,7 @@ export const NotFoundMessage: FC = () => (
         textAlign: 'center'
       }}
     >
-      NO ROVERS FOUND
+      NO PHOTOS FOUND
     </Typography>
   </Container>
 );

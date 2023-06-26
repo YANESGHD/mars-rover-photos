@@ -1,7 +1,17 @@
 import { FC, useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { ButtonGroup, Dialog, DialogContent, DialogActions, Grid, InputLabel, FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import {
+  ButtonGroup,
+  Dialog,
+  DialogContent,
+  DialogActions,
+  Grid,
+  InputLabel,
+  FormControlLabel,
+  Radio,
+  RadioGroup
+} from '@mui/material';
 import DialogTitle from '@mui/material/DialogTitle';
 import { dateTypes, cameras } from '../../constants';
 import styled from '@emotion/styled';
@@ -10,7 +20,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateField } from '@mui/x-date-pickers/DateField';
 import moment from 'moment';
-import dayjs from 'dayjs';
 
 interface FiltersProps {
   open: boolean;
@@ -19,7 +28,7 @@ interface FiltersProps {
 
 export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
   const [dateTypeSelected, setDateTypeSelected] = useState('Earth Date');
-  const [earthValueEntered, setEarthValueEntered] = useState<any>(dayjs('2022-04-17'));
+  const [earthValueEntered, setEarthValueEntered] = useState<any>(null);
   const [solValueEntered, setSolValueEntered] = useState<any>('');
   const [cameraSelected, setCameraSelected] = useState('');
   const { roverSelected } = useRoverContext();
@@ -51,22 +60,32 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
   };
 
   useEffect(() => {
-    setEarthValueEntered('');
+    setEarthValueEntered(null);
     setSolValueEntered('');
     setCameraSelected('');
   }, [roverSelected]);
 
   return (
     <>
-      <Dialog open={open} onClose={() => { setOpen(false); }}>
+      <Dialog open={open} onClose={() => setOpen(false)}>
         <Container>
-          <DialogTitle sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <ButtonGroup color='secondary' aria-label='medium secondary button group'>
+          <DialogTitle
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <ButtonGroup
+              color='secondary'
+              aria-label='medium secondary button group'
+            >
               {dateTypes.map((type) => (
                 <StyledButton
                   key={type}
                   isSelected={type === dateTypeSelected}
-                  onClick={() => { setDateTypeSelected(type); }}>
+                  onClick={() => setDateTypeSelected(type)}
+                >
                   {type}
                 </StyledButton>
               ))}
@@ -76,19 +95,20 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
             {dateTypeSelected === 'Earth Date'
               ? (
               <>
-                <InputLabel>
-                  Earth Date
-                </InputLabel>
+                <InputLabel sx={{ paddingBottom: '8px' }}>Earth Date</InputLabel>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateField name='earth-date' size='small' value={earthValueEntered} onChange={(value) => setEarthValueEntered(value)} />
+                  <DateField
+                    name='earth-date'
+                    size='small'
+                    value={earthValueEntered}
+                    onChange={(value) => setEarthValueEntered(value)}
+                  />
                 </LocalizationProvider>
               </>
                 )
               : (
               <>
-                <InputLabel>
-                  Sol Date
-                </InputLabel>
+                <InputLabel>Sol Date</InputLabel>
                 <TextField
                   name='sol-date'
                   margin='dense'
@@ -103,14 +123,12 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
               </>
                 )}
 
-            <InputLabel sx={{ paddingTop: '20px' }}>
-              Cameras
-            </InputLabel>
+            <InputLabel sx={{ paddingTop: '20px' }}>Cameras</InputLabel>
             <RadioGroup
               aria-label='opciones'
               name='opciones'
               value={cameraSelected}
-              onChange={(event) => { setCameraSelected(event.target.value); }}
+              onChange={(event) => setCameraSelected(event.target.value)}
             >
               <Grid container spacing={2}>
                 {cameras.map((camera) => (
@@ -119,8 +137,12 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
                       value={camera.key}
                       control={<Radio />}
                       label={camera.name}
-                      disabled={!(camera.rovers).includes(roverSelected)}
-                      sx={{ paddingTop: '5px', fontSize: '12px', color: 'rgba(0, 0, 0, 0.6);' }}
+                      disabled={!camera.rovers.includes(roverSelected)}
+                      sx={{
+                        paddingTop: '5px',
+                        fontSize: '12px',
+                        color: 'rgba(0, 0, 0, 0.6);'
+                      }}
                     />
                   </Grid>
                 ))}
@@ -146,9 +168,10 @@ const StyledButton = styled(Button) <{ isSelected: boolean }>`
   box-shadow: 20px;
   border-color: black !important;
   color: ${({ isSelected }) => (isSelected ? 'white' : 'black')} !important;
-  background-color: ${({ isSelected }) => (isSelected ? '#BB3896' : '#FDECEF')} !important;
+  background-color: ${({ isSelected }) =>
+    isSelected ? '#BB3896' : '#FDECEF'} !important;
 `;
 
 const Container = styled.div`
-  background-color: #FDECEF;
+  background-color: #fdecef;
 `;

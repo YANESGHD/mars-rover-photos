@@ -1,4 +1,4 @@
-import { FC, createContext, useEffect, useContext, useState, ReactNode } from 'react';
+import React, { FC, createContext, useEffect, useContext, useState, ReactNode } from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import { useFilterContext } from './FilterContext';
@@ -40,7 +40,7 @@ const getRoverImagesByFilter = async (rover: string, payload: any = null, page: 
 
   const response = await axios({
     method: 'get',
-    url: `${process.env.REACT_APP_NASA_API_URL}api/v1/rovers/${rover}/photos`,
+    url: `${process.env.REACT_APP_NASA_API_URL}api/v1/trovers/${rover}/photos`,
     params
   });
 

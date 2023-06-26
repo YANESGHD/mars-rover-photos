@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from '@emotion/styled';
 import { Grid } from '@mui/material';
-import { RoverCard } from '../../../components/ListRovers/RoverCard';
+import { PhotoCard } from '../../../components/ListPhotos/PhotoCard';
 
 interface ListBookmarksProps {
   roverImages: any[]
@@ -10,13 +10,13 @@ interface ListBookmarksProps {
 export const ListBookmarks: FC<ListBookmarksProps> = ({ roverImages }) => {
   return (
     <Container>
-        <Grid container xs={12}>
-          {roverImages?.map((rover: any) => (
-            <Grid item xs={12} sm={6} md={4} key={rover.id}>
-              <RoverCard rover={rover} />
-            </Grid>
-          ))}
-        </Grid>
+      <Grid container xs={12}>
+        {roverImages?.map((rover: any) => (
+          <Grid item xs={12} sm={6} md={4} key={rover.id}>
+            <PhotoCard photo={rover} />
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 };
