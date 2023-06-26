@@ -1,38 +1,38 @@
 import { FC, useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { ButtonGroup, Dialog, DialogContent, DialogActions, Grid, InputLabel, Checkbox, FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import { ButtonGroup, Dialog, DialogContent, DialogActions, Grid, InputLabel, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import DialogTitle from '@mui/material/DialogTitle';
 import { dateTypes, cameras } from '../../constants';
 import styled from '@emotion/styled';
-import { StyledDateField } from './DateField';
 import { useFilterContext, useRoverContext } from '../../contexts';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateField } from '@mui/x-date-pickers/DateField';
 import moment from 'moment';
+import dayjs from 'dayjs';
 
 interface FiltersProps {
   open: boolean;
-  setOpen: (value: boolean) => void;
+  setOpen: (value: boolean) => void
 }
 
 export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
   const [dateTypeSelected, setDateTypeSelected] = useState('Earth Date');
-  const [earthValueEntered, setEarthValueEntered] = useState<any>();
+  const [earthValueEntered, setEarthValueEntered] = useState<any>(dayjs('2022-04-17'));
   const [solValueEntered, setSolValueEntered] = useState<any>('');
   const [cameraSelected, setCameraSelected] = useState('');
   const { roverSelected } = useRoverContext();
-  const { setFilters } = useFilterContext(); 
+  const { setFilters } = useFilterContext();
 
   const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
-    const payload: any = {}
+    const payload: any = {};
 
     if (cameraSelected) {
       payload.camera = cameraSelected.toLowerCase();
@@ -40,8 +40,8 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
 
     if (dateTypeSelected === 'Earth Date' && earthValueEntered?.$d) {
       payload.earth_date = moment(earthValueEntered.$d).format('YYYY-MM-DD');
-    } 
-    
+    }
+
     if (dateTypeSelected === 'Sol Date' && solValueEntered) {
       payload.sol = solValueEntered;
     }
@@ -58,57 +58,59 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
 
   return (
     <>
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog open={open} onClose={() => { setOpen(false); }}>
         <Container>
           <DialogTitle sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <ButtonGroup color="secondary" aria-label="medium secondary button group">
+            <ButtonGroup color='secondary' aria-label='medium secondary button group'>
               {dateTypes.map((type) => (
                 <StyledButton
                   key={type}
                   isSelected={type === dateTypeSelected}
-                  onClick={() => setDateTypeSelected(type)}>
+                  onClick={() => { setDateTypeSelected(type); }}>
                   {type}
                 </StyledButton>
               ))}
             </ButtonGroup>
           </DialogTitle>
           <DialogContent sx={{ paddingTop: '20px' }}>
-            {dateTypeSelected === 'Earth Date' ? (
+            {dateTypeSelected === 'Earth Date'
+              ? (
               <>
                 <InputLabel>
                   Earth Date
                 </InputLabel>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateField name='earth-date' size="small" value={earthValueEntered} onChange={(value) => setEarthValueEntered(value)} />
+                  <DateField name='earth-date' size='small' value={earthValueEntered} onChange={(value) => setEarthValueEntered(value)} />
                 </LocalizationProvider>
               </>
-            ) : (
+                )
+              : (
               <>
                 <InputLabel>
                   Sol Date
                 </InputLabel>
                 <TextField
                   name='sol-date'
-                  margin="dense"
+                  margin='dense'
                   placeholder='e.g. 1000'
-                  id="name"
-                  type="number"
-                  variant="outlined"
-                  size="small"
+                  id='name'
+                  type='number'
+                  variant='outlined'
+                  size='small'
                   value={solValueEntered}
                   onChange={(event) => setSolValueEntered(event.target.value)}
                 />
               </>
-            )}
+                )}
 
             <InputLabel sx={{ paddingTop: '20px' }}>
               Cameras
             </InputLabel>
             <RadioGroup
-              aria-label="opciones"
-              name="opciones"
+              aria-label='opciones'
+              name='opciones'
               value={cameraSelected}
-              onChange={(event) => setCameraSelected(event.target.value)}
+              onChange={(event) => { setCameraSelected(event.target.value); }}
             >
               <Grid container spacing={2}>
                 {cameras.map((camera) => (
@@ -118,7 +120,7 @@ export const Filters: FC<FiltersProps> = ({ open, setOpen }) => {
                       control={<Radio />}
                       label={camera.name}
                       disabled={!(camera.rovers).includes(roverSelected)}
-                      sx={{ paddingTop: '5px', fontSize: '12px', color: 'rgba(0, 0, 0, 0.6);'}}
+                      sx={{ paddingTop: '5px', fontSize: '12px', color: 'rgba(0, 0, 0, 0.6);' }}
                     />
                   </Grid>
                 ))}

@@ -4,7 +4,7 @@ interface FilterContextProps {
   filters: any;
   setFilters: (filters: any) => void;
   page: number;
-  setPage: (page: number) => void;
+  setPage: (page: number) => void
 }
 
 const FilterContext = createContext<FilterContextProps>({
@@ -15,7 +15,7 @@ const FilterContext = createContext<FilterContextProps>({
 });
 
 interface FilterProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {

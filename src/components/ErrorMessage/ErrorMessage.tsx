@@ -4,7 +4,7 @@ import { HighlightOff } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 
 interface ErrorMessageProps {
-  message: string;
+  message: string
 };
 
 export const ErrorMessage: FunctionComponent<ErrorMessageProps> = ({ message }) => (
@@ -15,7 +15,7 @@ export const ErrorMessage: FunctionComponent<ErrorMessageProps> = ({ message }) 
       sx={{
         fontSize: '20px',
         textAlign: 'center',
-        paddingBottom: '10px',
+        paddingBottom: '10px'
       }}
     >
       AN ERROR WAS FOUND
@@ -24,7 +24,7 @@ export const ErrorMessage: FunctionComponent<ErrorMessageProps> = ({ message }) 
       variant='h4'
       sx={{
         fontSize: '16px',
-        textAlign: 'center',
+        textAlign: 'center'
       }}
     >
       {message}

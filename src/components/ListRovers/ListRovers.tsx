@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import styled from '@emotion/styled';
 import { Grid } from '@mui/material';
 import { RoverCard } from './RoverCard';
@@ -15,7 +15,7 @@ export const ListRovers: FC = () => {
   const handleScroll = () => {
     fetchRoverImages(page + 1);
     setPage(page + 1);
-  }
+  };
 
   if (!isLoading && isError) {
     return <ErrorMessage message={isError.message} />;
@@ -43,7 +43,7 @@ export const ListRovers: FC = () => {
         </Grid>
       </Container>
     </InfiniteScroll>
-  )
+  );
 };
 
 const Container = styled.div`

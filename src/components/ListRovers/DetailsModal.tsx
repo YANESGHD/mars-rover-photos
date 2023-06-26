@@ -7,7 +7,7 @@ import { useBookmarkContext } from '../../contexts';
 interface DetailsModalProps {
   open: boolean;
   setOpen: (value: boolean) => void;
-  details: any;
+  details: any
 }
 
 export const DetailsModal: FC<DetailsModalProps> = ({ open, setOpen, details }) => {

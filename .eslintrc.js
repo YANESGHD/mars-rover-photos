@@ -29,7 +29,26 @@ module.exports = {
     'react'
   ],
   rules: {
-    "semi": ["error", "always"],
-    "quotes": ["error", "single"],
+    '@typescript-eslint/member-delimiter-style': ['error', {
+      multiline: {
+        delimiter: 'semi',
+        requireLast: false
+      },
+      singleline: {
+        delimiter: 'semi',
+        requireLast: false
+      }
+    }],
+    '@typescript-eslint/semi': 'off',
+    '@typescript-eslint/consistent-type-imports': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/no-confusing-void-expression': 'off',
+    'react/react-in-jsx-scope': 'off',
+    semi: ['error', 'always'],
+    quotes: ['error', 'single']
   }
-}
+};

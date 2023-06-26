@@ -15,7 +15,7 @@ export const Selector: FC = () => {
       <Container>
         <ButtonGroup color="secondary" aria-label="medium secondary button group">
           {rovers.map((rover) => (
-            <StyledButton 
+            <StyledButton
               key={rover}
               isSelected={rover === roverSelected}
               onClick={() => setRoverSelected(rover)}>

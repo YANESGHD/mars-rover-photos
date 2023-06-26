@@ -10,7 +10,7 @@ export const NotFoundMessage: FC = () => (
       variant='h3'
       sx={{
         fontSize: '20px',
-        textAlign: 'center',
+        textAlign: 'center'
       }}
     >
       NO ROVERS FOUND

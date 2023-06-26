@@ -1,11 +1,10 @@
-import React, { FC, createContext, useEffect, useContext, useState, ReactNode } from 'react';
-import { useRoverImages } from '../hooks/useRovers';
+import { FC, createContext, useEffect, useContext, useState, ReactNode } from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import { useFilterContext } from './FilterContext';
 
 interface RoverProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 interface RoverContextProps {
@@ -15,7 +14,7 @@ interface RoverContextProps {
   isLoading: boolean;
   isError: any;
   hasMore: boolean;
-  fetchRoverImages: (payload: any) => void;
+  fetchRoverImages: (payload: any) => void
 }
 
 const RoverContext = createContext<RoverContextProps>({
@@ -30,10 +29,10 @@ const RoverContext = createContext<RoverContextProps>({
 
 const getRoverImagesByFilter = async (rover: string, payload: any = null, page: number) => {
   const params: any = {
-    page: page ? page : 1,
+    page: page || 1,
     api_key: process.env.REACT_APP_NASA_API_KEY,
     ...payload
-  }
+  };
 
   if (!params?.earth_date && !params.sol) {
     params.earth_date = moment().format('YYYY-MM-DD');
@@ -43,10 +42,10 @@ const getRoverImagesByFilter = async (rover: string, payload: any = null, page: 
     method: 'get',
     url: `${process.env.REACT_APP_NASA_API_URL}api/v1/rovers/${rover}/photos`,
     params
-  })
+  });
 
   return response.data.photos;
-}
+};
 
 export const RoverProvider: FC<RoverProviderProps> = ({ children }) => {
   const [roverSelected, setRoverSelected] = useState('curiosity');
@@ -76,7 +75,7 @@ export const RoverProvider: FC<RoverProviderProps> = ({ children }) => {
     setRoverSelected(rover);
     setFilters({});
     setPage(1);
-  }
+  };
 
   useEffect(() => {
     setRoverImages([]);

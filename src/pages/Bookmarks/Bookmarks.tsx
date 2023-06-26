@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { Landing, Selector, ListRovers } from '../../components';
 import styled from '@emotion/styled';
 import { useBookmarkContext } from '../../contexts';
 import { ListBookmarks } from './components/ListBookmarks';

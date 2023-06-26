@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 import styled from '@emotion/styled';
-import { Bookmarks, Menu } from '@mui/icons-material';
+import { Menu } from '@mui/icons-material';
 import favicon from '../../assets/nasa-logo.svg';
 import { HamburguerMenu } from './HamburguerMenu';
 
@@ -13,7 +13,7 @@ export const Header: FC = () => {
   };
 
   return (
-    <AppBar position='static' color='primary' sx={{  padding: { xs: '0 10px', md: '0 70px' } }}>
+    <AppBar position='static' color='primary' sx={{ padding: { xs: '0 10px', md: '0 70px' } }}>
       <Toolbar>
         <IconButton>
           <Logo src={favicon} alt='logo' />
@@ -25,7 +25,7 @@ export const Header: FC = () => {
             textAlign: 'center',
             flexGrow: 1,
             letterSpacing: '.3rem',
-            textDecoration: 'none',
+            textDecoration: 'none'
           }}
         >
           NASA Explore
@@ -37,7 +37,7 @@ export const Header: FC = () => {
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 const Logo = styled.img`
   width: 60px;

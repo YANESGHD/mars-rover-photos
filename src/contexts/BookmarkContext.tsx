@@ -2,23 +2,23 @@ import { createContext, useContext, useState, useEffect, FC, ReactNode } from 'r
 
 interface Bookmark {
   id: number;
-  imageUrl: string;
+  imageUrl: string
 }
 
 interface BookmarkContextProps {
   bookmarks: any[];
   toggleBookmark: (rover: any) => void;
-  validateBookmark: (rover: any) => boolean;
+  validateBookmark: (rover: any) => boolean
 }
 
 export const BookmarkContext = createContext<BookmarkContextProps>({
   bookmarks: [],
   toggleBookmark: (rover: any) => {},
-  validateBookmark: (rover: any) => false,
+  validateBookmark: (rover: any) => false
 });
 
 interface BookmarkProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const BookmarkProvider: FC<BookmarkProviderProps> = ({ children }) => {
@@ -37,7 +37,7 @@ export const BookmarkProvider: FC<BookmarkProviderProps> = ({ children }) => {
   const validateBookmark = (rover: any) => {
     const bookmarkExists = bookmarks.some((bookmark) => bookmark.id === rover.id);
     return bookmarkExists;
-  }
+  };
 
   const addBookmark = (rover: any) => {
     setBookmarks((prevBookmarks) => [...prevBookmarks, rover]);

@@ -10,7 +10,7 @@ export const Router: FC = () => {
         <Route path='/home' element={<Home />} />
         <Route path='/bookmarks' element={<Bookmarks />} />
         <Route path='*' element={<Navigate replace to='/home' />} />
-      </Route> 
+      </Route>
     </Routes>
   );
 };
