@@ -2,8 +2,8 @@ import { FC, useState } from 'react';
 import styled from '@emotion/styled';
 import { AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 import { Menu } from '@mui/icons-material';
-import favicon from '../../assets/nasa-logo.svg';
 import { HamburguerMenu } from './HamburguerMenu';
+import logo from '../../assets/nasa-logo.svg';
 
 export const Header: FC = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -16,7 +16,7 @@ export const Header: FC = () => {
     <AppBar position='static' color='primary' sx={{ padding: { xs: '0 10px', md: '0 70px' } }}>
       <Toolbar>
         <IconButton>
-          <Logo src={favicon} alt='logo' />
+          <Logo src={logo} alt='logo' />
         </IconButton>
         <Typography
           variant='h6'

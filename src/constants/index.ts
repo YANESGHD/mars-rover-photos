@@ -2,6 +2,11 @@ export const rovers = ['curiosity', 'opportunity', 'spirit'];
 
 export const dateTypes = ['Earth Date', 'Sol Date'];
 
+export const sections = [
+  { key: 'home', label: 'Home' },
+  { key: 'bookmarks', label: 'Bookmarks' }
+];
+
 export const cameras = [
   {
     key: 'FHAZ',
