@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 import { useBookmarkContext } from '../../contexts';
-import { ListPhotos } from '../../components';
+import { ListPhotos, NotFoundMessage } from '../../components';
 
 export const Bookmarks: FC = () => {
   const { bookmarks } = useBookmarkContext();
@@ -16,7 +16,7 @@ export const Bookmarks: FC = () => {
       }}>
         Bookmarks
       </Typography>
-      <ListPhotos photos={bookmarks} />
+      {!bookmarks.length ? <NotFoundMessage /> : <ListPhotos photos={bookmarks} />}
     </Container>
   );
 };
