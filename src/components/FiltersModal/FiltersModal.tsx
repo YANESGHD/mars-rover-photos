@@ -77,5 +77,5 @@ export const FiltersModal: FC<FiltersProps> = ({ open, setOpen }) => {
 };
 
 const Container = styled.div`
-  background-color: #fdecef;
+  background-color: #FDECEF;
 `;

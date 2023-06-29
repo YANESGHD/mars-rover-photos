@@ -11,7 +11,7 @@ interface ListPhotosProps {
 export const ListPhotos: FC<ListPhotosProps> = ({ photos }) => {
   return (
     <Container>
-      <Grid container xs={12}>
+      <Grid container>
         {photos?.map((photo: Photo) => (
           <Grid item xs={12} sm={6} md={3} key={photo.id}>
             <PhotoCard photo={photo} />

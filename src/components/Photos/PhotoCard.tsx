@@ -30,12 +30,12 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   transition: box-shadow 0.3s ease-in-out;
 `;
 
 const Image = styled.img`
-  width: 90%;
+  width: 92%;
   height: 240px;
   border-radius: 14px;
 
@@ -45,7 +45,7 @@ const Image = styled.img`
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 10px #bb3896;
+    box-shadow: 0 0 10px #BB3896;
     transform: scale(1.02);
   }
 `;

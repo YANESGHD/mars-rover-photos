@@ -40,7 +40,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 10px;
-  background-color: #fdecef;
+  background-color: #FDECEF;
 `;
 
 const TextContainer = styled.div`
