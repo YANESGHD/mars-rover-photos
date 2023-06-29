@@ -19,7 +19,7 @@ interface FiltersProps {
 export const FiltersModal: FC<FiltersProps> = ({ open, setOpen }) => {
   const [dateTypeSelected, setDateTypeSelected] = useState('Earth Date');
   const [earthValueEntered, setEarthValueEntered] = useState<any>(null);
-  const [solValueEntered, setSolValueEntered] = useState<any>('');
+  const [solValueEntered, setSolValueEntered] = useState<string>('');
   const [cameraSelected, setCameraSelected] = useState('');
   const { roverSelected } = useRoverContext();
   const { setFilters } = useFilterContext();

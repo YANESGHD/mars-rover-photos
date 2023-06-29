@@ -1,8 +1,9 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
+import { Filters } from '../interfaces';
 
 interface FilterContextProps {
-  filters: any;
-  setFilters: (filters: any) => void;
+  filters: Filters;
+  setFilters: (filters: Filters) => void;
   page: number;
   setPage: (page: number) => void
 }
@@ -19,7 +20,7 @@ interface FilterProviderProps {
 }
 
 export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
-  const [filters, setFilters] = useState<any>({});
+  const [filters, setFilters] = useState<Filters>({});
   const [page, setPage] = useState(1);
 
   const contextValue: FilterContextProps = {

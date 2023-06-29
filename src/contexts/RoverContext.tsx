@@ -2,6 +2,7 @@ import { FC, createContext, useEffect, useContext, useState, ReactNode } from 'r
 import moment from 'moment';
 import axios from 'axios';
 import { useFilterContext } from './FilterContext';
+import { Photo, Filters } from '../interfaces';
 
 interface RoverProviderProps {
   children: ReactNode
@@ -10,11 +11,11 @@ interface RoverProviderProps {
 interface RoverContextProps {
   roverSelected: string;
   setRoverSelected: (rover: string) => void;
-  roverImages: any;
+  roverImages: Photo[];
   isLoading: boolean;
   isError: any;
   hasMore: boolean;
-  fetchRoverImages: (payload: any) => void
+  fetchRoverImages: (page: number | null) => void
 }
 
 const RoverContext = createContext<RoverContextProps>({
@@ -27,11 +28,11 @@ const RoverContext = createContext<RoverContextProps>({
   fetchRoverImages: () => {}
 });
 
-const getRoverImagesByFilter = async (rover: string, payload: any = null, page: number) => {
-  const params: any = {
-    page: page || 1,
+const getRoverImagesByFilter = async (rover: string, filters: Filters, page: number | null) => {
+  const params = {
+    page: page ?? 1,
     api_key: process.env.REACT_APP_NASA_API_KEY,
-    ...payload
+    ...filters
   };
 
   if (!params?.earth_date && !params.sol) {
@@ -49,20 +50,20 @@ const getRoverImagesByFilter = async (rover: string, payload: any = null, page: 
 
 export const RoverProvider: FC<RoverProviderProps> = ({ children }) => {
   const [roverSelected, setRoverSelected] = useState('curiosity');
-  const [roverImages, setRoverImages] = useState<any>([]);
+  const [roverImages, setRoverImages] = useState<Photo[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<any>(null);
   const [hasMore, setHasMore] = useState(true);
 
   const { filters, setFilters, setPage } = useFilterContext();
 
-  const fetchRoverImages = async (page: any = null) => {
+  const fetchRoverImages = async (page: number | null = null) => {
     setIsLoading(true);
     setError(null);
 
     try {
       const images = await getRoverImagesByFilter(roverSelected, filters, page);
-      setRoverImages((prevState: any) => [...prevState, ...images]);
+      setRoverImages((prevState: Photo[]) => [...prevState, ...images]);
       setHasMore(images.length === 25);
     } catch (error) {
       setError(error);
@@ -71,7 +72,7 @@ export const RoverProvider: FC<RoverProviderProps> = ({ children }) => {
     setIsLoading(false);
   };
 
-  const handleRoverChange = (rover: any) => {
+  const handleRoverChange = (rover: string) => {
     setRoverSelected(rover);
     setFilters({});
     setPage(1);

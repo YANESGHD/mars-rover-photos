@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
 import styled from '@emotion/styled';
 import { DetailsModal } from '../';
+import { Photo } from '../../interfaces';
 
 interface PhotoCardProps {
-  photo: any
+  photo: Photo
 }
 
 export const PhotoCard: FC<PhotoCardProps> = ({ photo }) => {

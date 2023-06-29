@@ -1,20 +1,16 @@
 import { createContext, useContext, useState, useEffect, FC, ReactNode } from 'react';
-
-interface Bookmark {
-  id: number;
-  imageUrl: string
-}
+import { Photo } from '../interfaces';
 
 interface BookmarkContextProps {
-  bookmarks: any[];
-  toggleBookmark: (rover: any) => void;
-  validateBookmark: (rover: any) => boolean
+  bookmarks: Photo[];
+  toggleBookmark: (rover: Photo) => void;
+  validateBookmark: (rover: Photo) => boolean
 }
 
 export const BookmarkContext = createContext<BookmarkContextProps>({
   bookmarks: [],
-  toggleBookmark: (rover: any) => {},
-  validateBookmark: (rover: any) => false
+  toggleBookmark: (rover: Photo) => {},
+  validateBookmark: (rover: Photo) => false
 });
 
 interface BookmarkProviderProps {
@@ -22,9 +18,9 @@ interface BookmarkProviderProps {
 }
 
 export const BookmarkProvider: FC<BookmarkProviderProps> = ({ children }) => {
-  const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
+  const [bookmarks, setBookmarks] = useState<Photo[]>([]);
 
-  const toggleBookmark = (rover: any) => {
+  const toggleBookmark = (rover: Photo) => {
     const bookmarkExists = validateBookmark(rover);
 
     if (bookmarkExists) {
@@ -34,16 +30,16 @@ export const BookmarkProvider: FC<BookmarkProviderProps> = ({ children }) => {
     }
   };
 
-  const validateBookmark = (rover: any) => {
+  const validateBookmark = (rover: Photo) => {
     const bookmarkExists = bookmarks.some((bookmark) => bookmark.id === rover.id);
     return bookmarkExists;
   };
 
-  const addBookmark = (rover: any) => {
+  const addBookmark = (rover: Photo) => {
     setBookmarks((prevBookmarks) => [...prevBookmarks, rover]);
   };
 
-  const removeBookmark = (rover: any) => {
+  const removeBookmark = (rover: Photo) => {
     setBookmarks((prevBookmarks) => prevBookmarks.filter((bookmark) => bookmark.id !== rover.id));
   };
 
