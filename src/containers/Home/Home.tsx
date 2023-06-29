@@ -12,5 +12,9 @@ export const Home: FC = () => {
 };
 
 const Container = styled.div`
-  padding: 0 60px;
+  padding: 0 10px;
+
+  @media (min-width: 668px) {
+    padding: 0 60px;
+  }
 `;
