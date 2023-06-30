@@ -1,8 +1,8 @@
 import { FC, createContext, useEffect, useContext, useState, ReactNode } from 'react';
 import moment from 'moment';
 import axios from 'axios';
-import { useFilterContext } from './FilterContext';
-import { Photo, Filters } from '../interfaces';
+import { useFilterContext } from '../';
+import { Photo, Filters } from '../../interfaces';
 
 interface RoverProviderProps {
   children: ReactNode

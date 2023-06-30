@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, FC, ReactNode } from 'react';
-import { Photo } from '../interfaces';
+import { Photo } from '../../interfaces';
 
 interface BookmarkContextProps {
   bookmarks: Photo[];

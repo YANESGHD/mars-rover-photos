@@ -19,8 +19,7 @@ export const CameraSelector: FC<CameraSelectorProps> = ({ roverSelected, value, 
     <>
       <InputLabel sx={{ paddingTop: '20px' }}>Cameras</InputLabel>
       <RadioGroup
-        aria-label='opciones'
-        name='opciones'
+        name='camera-options'
         value={value}
         onChange={(event) => setValue(event.target.value)}
       >
